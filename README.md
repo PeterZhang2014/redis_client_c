@@ -1,4 +1,4 @@
 #redis clien by c
-add source v0.0.1 2015/04/10 16:32
-#v0.0.2 2015/04/15 09:58
-add the input parameter used by the callbacke function message_handle for the function redisSubscribeMessage.
+add source files. [v0.0.1 04:32PM Apr 10,2015]
+
+add the input parameter used by the callbacke function message_handle for the function redisSubscribeMessage.[v0.0.2 09:58AM Apr 15,2015]
