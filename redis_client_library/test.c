@@ -75,7 +75,7 @@ void * thread_publish(void *args)
 	printf("thread_publish exit\n");
 	pthread_exit(NULL);
 }
-int message_handler(const char *msg,size_t len)
+int message_handler(const char *msg,size_t len, void *arg)
 {
 	int i =0;
 	for (;i<len;i++)
@@ -88,7 +88,7 @@ int message_handler(const char *msg,size_t len)
 void * thread_subscribe(void *args)
 {
 	redisContext *c = (redisContext *)args;
-	redisSubscribeMessage(c,"channel.1",message_handler);
+	redisSubscribeMessage(c,"channel.1",message_handler,args);
 
 	printf("thread_subscribe exit\n");
 	pthread_exit(NULL);

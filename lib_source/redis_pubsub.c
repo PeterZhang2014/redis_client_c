@@ -61,11 +61,13 @@ int redisPublishMessage(redisContext *c, const char *channel, \
  *       param1  : redisContext pointer
  *       param2  : channel name
  *       param3  : message handler function pointer
+ *       param4  : the third param of int (*message)(const char *msg, size_t
+ *                 len, void *arg)
  * function: subscribe the channel and receive messahe from it
  * return  : return 0, if success; or, return -1
  */
 int redisSubscribeMessage(redisContext *c, const char *channel,\
-		int (*message_handler)(const char *msg, size_t len))
+		int (*message_handler)(const char *msg, size_t len, void *arg), void *arg)
 {
 	redisReply *reply = NULL;
 	void *_reply = NULL;
@@ -107,7 +109,7 @@ int redisSubscribeMessage(redisContext *c, const char *channel,\
 					/*process message data*/
 					if (message_handler != NULL)
 					{
-						message_handler(reply->element[2]->str,reply->element[2]->len);
+						message_handler(reply->element[2]->str,reply->element[2]->len,arg);
 					}
 				}
 			}

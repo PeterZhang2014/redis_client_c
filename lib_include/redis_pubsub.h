@@ -26,12 +26,15 @@ int redisPublishMessage(redisContext *c, const char *channel, \
  * input param
  *       param1  : redisContext pointer
  *       param2  : channel name
- *       param3  : message handler function pointer
+ *       param3  : message handler function pointer,
+ *       param4  : the third param of int (*message_handler)(const char *msg,
+ *                 size_t len, void *arg)
  * function: subscribe the channel and receive messahe from it
  * return  : return 0, if success; or, return -1
  */
 int redisSubscribeMessage(redisContext *c, const char *channel,\
-		int (*message_handler)(const char *msg, size_t len));
+		int (*message_handler)(const char *msg, size_t len, void *arg),\
+		void *arg);
 
 /* name    : redisUnsubscribeMessage
  * input param
